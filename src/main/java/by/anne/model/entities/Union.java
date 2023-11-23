@@ -2,6 +2,7 @@ package by.anne.model.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "unions")
@@ -45,4 +46,6 @@ public class Union {
     public void setCountries(List<Country> countries) {
         this.countries = countries;
     }
+
+
 }
