@@ -20,7 +20,7 @@ All available  countries
             <td>${country.president}</td>
             <td>${country.capital}</td>
             <td>
-                <a href="/view/${library.id}">view</a>
+                <a href="/view/${country.id}">view</a>
                 <a href="/delete/${library.id}">delete</a>
                 <a href="/update/${library.id}">update</a>
             </td>
