@@ -12,7 +12,7 @@ public class AppConfig {
     @Bean
     public ViewResolver viewResolver(){
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/pages");
+        resolver.setPrefix("/pages/");
         resolver.setSuffix(".jsp");
         return resolver;
     }
