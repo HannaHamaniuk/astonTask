@@ -16,7 +16,7 @@ public class JpaConfig {
         return new HibernateJpaVendorAdapter();
     }
 
-    @Bean
+    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean factoryBean(JpaVendorAdapter jpaVendorAdapter){
         LocalContainerEntityManagerFactoryBean localContainer = new LocalContainerEntityManagerFactoryBean();
         localContainer.setJpaVendorAdapter(jpaVendorAdapter);
