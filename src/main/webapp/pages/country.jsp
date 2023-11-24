@@ -1,9 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
     <title> CountryPage</title>
 </head>
 <body>
 
 <h2>Unions:</h2>
+
 <table border="1">
     <tr>
         <th>Title</th>
@@ -13,11 +16,12 @@
         <tr>
             <td>${union.title}</td>
 
-            <td><a href="/deleteBook/${country.id}/${union.id}">delete</a></td>
+            <td><a href="/deleteUnion/${union.id}">delete</a></td>
 
         </tr>
     </c:forEach>
 </table>
+
 <p>
     <a href="/addBook/${country.id}">Add union</a>
 </p>
