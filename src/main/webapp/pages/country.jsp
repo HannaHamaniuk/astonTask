@@ -4,7 +4,7 @@
     <title> CountryPage</title>
 </head>
 <body>
-
+Country name: ${country.name}
 <h2>Unions:</h2>
 
 <table border="1">
@@ -12,7 +12,7 @@
         <th>Title</th>
         <th>Action</th>
     </tr>
-    <c:forEach var="union" items="${unions}">
+    <c:forEach var="union" items="${country.unions}">
         <tr>
             <td>${union.title}</td>
 
@@ -23,7 +23,7 @@
 </table>
 
 <p>
-    <a href="/addBook/${country.id}">Add union</a>
+    <a href="/addUnion/${country.id}">Add union</a>
 </p>
 <p>
     <a href="/"></a>

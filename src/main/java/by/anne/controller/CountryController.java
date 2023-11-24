@@ -53,5 +53,13 @@ public class CountryController {
         return new ModelAndView("upd-country", "country", country);
 
     }
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable int id, Model model) {
+       Country country = countryRepository.findFullList(id);
+        model.addAttribute("country", country);
+        return"country";
+
+
+    }
 
 }

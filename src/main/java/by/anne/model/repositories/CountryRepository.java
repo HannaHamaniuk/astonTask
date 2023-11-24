@@ -14,8 +14,8 @@ import java.util.List;
 public interface CountryRepository extends JpaRepository<Country, Integer> {
 
 
-    @Query(value = "select c from Country c Left JOIN FETCH c.unions")
-   public List<Country> findFullList();
+    @Query(value = "select c from Country c Left JOIN FETCH c.unions where c.id=?1")
+   public Country findFullList(int id);
 
 
 }

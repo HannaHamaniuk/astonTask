@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public interface UnionRepository extends JpaRepository <Union, Integer>{
 
-    @Query(value="SELECT u from Union u LEFT JOIN FETCH u.countries c where c.id=?1")
-    public List<Union> getAllUnions(int id);
+//    @Query(value="SELECT u from Union u LEFT JOIN FETCH u.countries c where c.id=?1")
+//    public List<Union> getAllUnions(int id);
 
 }
