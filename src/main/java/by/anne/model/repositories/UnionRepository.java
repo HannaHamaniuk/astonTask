@@ -15,4 +15,7 @@ public interface UnionRepository extends JpaRepository <Union, Integer>{
 //    @Query(value="SELECT u from Union u LEFT JOIN FETCH u.countries c where c.id=?1")
 //    public List<Union> getAllUnions(int id);
 
+    @Query(value="SELECT u from Union u LEFT JOIN FETCH u.countries c where u.title=?1")
+  Union findByTitle(String name);
+
 }

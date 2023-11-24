@@ -2,6 +2,7 @@ package by.anne.model.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
@@ -15,7 +16,7 @@ public class Country {
     private String president;
     private String capital;
 
-    @ManyToMany(cascade = {CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE, CascadeType.DETACH, CascadeType.REFRESH},fetch = FetchType.LAZY)
     @JoinTable(name="country_union", joinColumns = @JoinColumn(name = "c_id"), inverseJoinColumns = @JoinColumn(name="u_id"))
     private List<Union> unions;
 
@@ -68,5 +69,27 @@ public class Country {
         this.unions = unions;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Country country = (Country) o;
+
+        if (id != country.id) return false;
+        if (!Objects.equals(name, country.name)) return false;
+        if (!Objects.equals(president, country.president)) return false;
+        if (!Objects.equals(capital, country.capital)) return false;
+        return Objects.equals(unions, country.unions);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (president != null ? president.hashCode() : 0);
+        result = 31 * result + (capital != null ? capital.hashCode() : 0);
+        result = 31 * result + (unions != null ? unions.hashCode() : 0);
+        return result;
+    }
 }

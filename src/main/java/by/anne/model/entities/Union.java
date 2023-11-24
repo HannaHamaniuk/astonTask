@@ -2,6 +2,7 @@ package by.anne.model.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
@@ -11,8 +12,9 @@ public class Union {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="u_id")
     private int id;
+   @Column(unique = true)
     private String title;
-    @ManyToMany(cascade = {CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinTable(name = "country_union", joinColumns = @JoinColumn(name = "u_id"),inverseJoinColumns = @JoinColumn(name = "c_id"))
     private List<Country>countries;
 
@@ -47,5 +49,23 @@ public class Union {
         this.countries = countries;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Union union = (Union) o;
+
+        if (id != union.id) return false;
+        if (!Objects.equals(title, union.title)) return false;
+        return Objects.equals(countries, union.countries);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (countries != null ? countries.hashCode() : 0);
+        return result;
+    }
 }
