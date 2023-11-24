@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UnionController {
@@ -41,14 +42,30 @@ public class UnionController {
 
     @PostMapping("/saveUnion")
     public String saveUnion(@ModelAttribute(name = "union") UnionInCountry unionInCountry) {
-        Union union = new Union();
-        union.setTitle(unionInCountry.getTitle());
-        Country country = countryRepository.findFullList(unionInCountry.getCountry_id());
-        List<Country> countries= new ArrayList<>();
-        countries.add(country);
-        union.setCountries(countries);
-        unionRepository.save(union);
+        Union union;
+          if(unionRepository.findByTitle(unionInCountry.getTitle())!=null){
+              union = unionRepository.findByTitle(unionInCountry.getTitle());
+         Country country= countryRepository.findFullList(unionInCountry.getCountry_id());
+         union.getCountries().add(country);
+         unionRepository.save(union);
+
+          }else{
+              union = new Union();
+              Country country = countryRepository.findFullList(unionInCountry.getCountry_id());
+              List<Country> countries= new ArrayList<>();
+              countries.add(country);
+              union.setTitle(unionInCountry.getTitle());
+              union.setCountries(countries);
+              unionRepository.save(union);
+          }
+
         return "redirect:/view/" + unionInCountry.getCountry_id();
 
+
+
+        }
+
+
+
     }
-}
+
