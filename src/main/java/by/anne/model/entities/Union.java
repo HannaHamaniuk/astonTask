@@ -12,7 +12,7 @@ public class Union {
     @Column(name="u_id")
     private int id;
     private String title;
-    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH},fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "country_union", joinColumns = @JoinColumn(name = "u_id"),inverseJoinColumns = @JoinColumn(name = "c_id"))
     private List<Country>countries;
 
