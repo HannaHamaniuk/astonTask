@@ -31,15 +31,6 @@ public class CountryController {
         return "index";
     }
 
-    @GetMapping("/view/{id}")
-    public String view(@PathVariable int id, Model model){
-         Country country = countryRepository.findFullList().get(id);
-         List<Union>unions = country.getUnions();
-        System.out.println(country.getUnions());
-         model.addAttribute("unions", unions);
-         return "country";
-
-    }
     @GetMapping("/add")
     public ModelAndView add(){
         return new ModelAndView("add-country", "country", new Country());
@@ -49,4 +40,18 @@ public class CountryController {
         countryRepository.save(country);
         return "redirect:/";
     }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id){
+        countryRepository.deleteById(id);
+
+        return "redirect:/";
+
+    }
+    @GetMapping("/update/{id}")
+    public ModelAndView update(@PathVariable int id){
+        Country country =  countryRepository.findById(id).get();
+        return new ModelAndView("upd-country", "country", country);
+
+    }
+
 }
