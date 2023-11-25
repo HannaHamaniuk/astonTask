@@ -10,13 +10,10 @@ Country name: ${country.name}
 <table border="1">
     <tr>
         <th>Title</th>
-        <th>Action</th>
     </tr>
     <c:forEach var="union" items="${country.unions}">
         <tr>
             <td>${union.title}</td>
-
-            <td><a href="/deleteUnion/${union.id}">delete</a></td>
 
         </tr>
     </c:forEach>

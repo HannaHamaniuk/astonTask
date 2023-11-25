@@ -3,18 +3,17 @@ package by.anne.controller;
 import by.anne.model.entities.Country;
 import by.anne.model.entities.Union;
 import by.anne.model.repositories.CountryRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
+@Api(value = "This is country controller")
 @Controller
+@RequestMapping("/v1/country")
 public class CountryController {
     private CountryRepository countryRepository;
 
