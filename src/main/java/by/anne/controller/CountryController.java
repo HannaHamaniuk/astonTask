@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-@Api(value = "This is country controller")
-@Controller
-@RequestMapping("/v1/country")
+
 public class CountryController {
     private CountryRepository countryRepository;
 
