@@ -17,8 +17,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/api/.*"))
+                .apis(RequestHandlerSelectors.basePackage("by.anne.controller"))
+                .paths(PathSelectors.regex("/v1*"))
                 .build()
                 .apiInfo(apiInfo());
     }
@@ -28,7 +28,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .title("Country union Service ")
                 .description("DESCRIPTION")
                 .version("VERSION")
-                .termsOfServiceUrl("http://terms-of-services.url")
+                .termsOfServiceUrl("/v1*")
                 .license("LICENSE")
                 .licenseUrl("http://url-to-license.com")
                 .build();
