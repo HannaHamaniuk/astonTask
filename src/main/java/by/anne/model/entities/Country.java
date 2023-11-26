@@ -1,5 +1,7 @@
 package by.anne.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +17,7 @@ public class Country {
     private String name;
     private String president;
     private String capital;
-
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE, CascadeType.DETACH, CascadeType.REFRESH},fetch = FetchType.LAZY)
     @JoinTable(name="country_union", joinColumns = @JoinColumn(name = "c_id"), inverseJoinColumns = @JoinColumn(name="u_id"))
     private List<Union> unions;
